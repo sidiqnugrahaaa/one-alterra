@@ -10,10 +10,10 @@
         <div class="flex flex-col items-center my-8">
             <ol class="flex items-center w-4/6">
                 <li
-                    class="flex w-full items-center text-one-primary after:content-[''] after:w-full after:h-1 after:border-b after:mx-4 after:border-one-primary after:border-4 after:inline-block dark:after:border-blue-800">
+                    class="flex w-full items-center text-one-primary after:content-[''] after:w-full after:h-1 after:border-b after:mx-4 after:border-one-primary after:border-4 after:inline-block ">
                     <span
-                        class="flex items-center justify-center w-10 h-10 bg-one-primary rounded-full lg:h-12 lg:w-12 dark:bg-blue-800 shrink-0">
-                        <svg class="w-3.5 h-3.5 text-white lg:w-4 lg:h-4 dark:text-blue-300" aria-hidden="true"
+                        class="flex items-center justify-center w-10 h-10 bg-one-primary rounded-full lg:h-12 lg:w-12  shrink-0">
+                        <svg class="w-3.5 h-3.5 text-white lg:w-4 lg:h-4 " aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 12">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M1 5.917 5.724 10.5 15 1.5" />
@@ -21,14 +21,14 @@
                     </span>
                 </li>
                 <li
-                    class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:mx-4 after:inline-block dark:after:border-gray-700">
+                    class="flex w-full items-center after:content-[''] after:w-full after:h-1 after:border-b after:border-gray-100 after:border-4 after:mx-4 after:inline-block ">
                     <span
-                        class="flex items-center justify-center w-10 h-10 bg-one-primary rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                        class="flex items-center justify-center w-10 h-10 bg-one-primary rounded-full lg:h-12 lg:w-12  shrink-0">
                     </span>
                 </li>
                 <li class="flex items-center w-fill">
                     <span
-                        class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12 dark:bg-gray-700 shrink-0">
+                        class="flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full lg:h-12 lg:w-12  shrink-0">
                     </span>
                 </li>
             </ol>
@@ -148,7 +148,7 @@
     <div id="popup-modal" tabindex="-1"
         class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
         <div class="relative w-full max-w-md max-h-full">
-            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div class="relative bg-white rounded-lg shadow ">
                 <div class="text-center">
                     <div class="flex justify-center">
                         <img src="{{ asset('assets/modal/check.png') }}" class="w-48 h-auto" alt="">
@@ -159,7 +159,7 @@
                             Belajar!
                         </p>
                         <button data-modal-hide="popup-modal" type="button"
-                            class="text-white bg-one-primary hover:bg-one-primary focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
+                            class="text-white bg-one-primary hover:bg-one-primary focus:ring-4 focus:outline-none focus:ring-red-300  font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
                             Ok
                         </button>
                     </div>

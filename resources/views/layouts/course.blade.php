@@ -24,7 +24,7 @@
                         <div class="flex justify-end mb-1">
                             <span class="text-sm font-medium text-one-primary ">{{ $enrolled->progress }}%</span>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
+                        <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4 ">
                             <div class="bg-one-primary h-2.5 rounded-full"
                                 style="{{ 'width: ' . $enrolled->progress . '%' }}"></div>
                         </div>
@@ -38,7 +38,7 @@
                                     data-inactive-classes="text-one-secondary">
                                     <h2 id="{{ 'accordion-' . $blueIndex . '-heading-' . $syllabusIndex + 1 }}">
                                         <button type="button"
-                                            class="flex items-center justify-between w-full font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
+                                            class="flex items-center justify-between w-full font-medium text-left text-gray-500 border-b border-gray-200"
                                             data-accordion-target="{{ '#accordion-' . $blueIndex . '-body-' . $syllabusIndex + 1 }}"
                                             aria-expanded="true"
                                             aria-controls="{{ 'accordion-' . $blueIndex . '-body-' . $syllabusIndex + 1 }}">

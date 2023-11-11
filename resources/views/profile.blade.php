@@ -12,11 +12,11 @@
             </div>
             <div class="flex items-center">
                 <button type="button"
-                    class="text-white bg-one-secondary hover:bg-one-secondary focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit
+                    class="text-white bg-one-secondary hover:bg-one-secondary focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Edit
                     Profile</button>
             </div>
         </div>
-        <hr class="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
+        <hr class="h-px my-8 bg-gray-200 border-0 ">
         <div class="mb-16" id="enrolled-course">
             <h4 class="text-one-secondary font-semibold text-2xl mb-8">Enrolled Courses</h4>
             <div class="grid grid-cols-2 gap-32">
@@ -31,7 +31,7 @@
                                 <div class="flex justify-end mb-1">
                                     <span class="text-sm font-medium text-one-primary ">{{ $item->progress }}%</span>
                                 </div>
-                                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700">
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 mb-4 ">
                                     <div class="bg-one-primary h-2.5 rounded-full"
                                         style="{{ 'width: ' . $item->progress . '%' }}"></div>
                                 </div>
@@ -82,7 +82,7 @@
                             </thead>
                             <tbody>
                                 @foreach ($listScore as $score)
-                                    <tr class="bg-white border-b dark:bg-gray-800">
+                                    <tr class="bg-white border-b ">
                                         <th scope="row" class="px-6 py-4 font-medium whitespace-nowrap">
                                             {{ $score['taken_date'] }}
                                         </th>

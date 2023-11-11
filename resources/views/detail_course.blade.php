@@ -88,7 +88,7 @@
                                         data-inactive-classes="text-one-secondary">
                                         <h2 id="{{ 'accordion-' . $blueIndex . '-heading-' . $syllabusIndex + 1 }}">
                                             <button type="button"
-                                                class="flex items-center justify-between w-full font-medium text-left text-gray-500 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400"
+                                                class="flex items-center justify-between w-full font-medium text-left text-gray-500 border-b border-gray-200  
                                                 data-accordion-target="{{ '#accordion-' . $blueIndex . '-body-' . $syllabusIndex + 1 }}"
                                                 aria-expanded="true"
                                                 aria-controls="{{ 'accordion-' . $blueIndex . '-body-' . $syllabusIndex + 1 }}">

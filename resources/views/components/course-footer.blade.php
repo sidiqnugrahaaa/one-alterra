@@ -8,7 +8,7 @@
                 </svg>
             </div>
 
-            <div class="ml-3 font-semibold tracking-wid dark:text-white">
+            <div class="ml-3 font-semibold tracking-wid">
                 Topik Sebelumnya
             </div>
         </a>
