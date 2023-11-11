@@ -5,26 +5,25 @@
                 stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
-            <a href="{{ route('profile') }}"
-                class="ml-3 text-xl font-semibold tracking-wide text-gray-800 dark:text-white">
+            <a href="{{ route('profile') }}" class="ml-3 text-xl font-semibold tracking-wide text-gray-800 ">
                 Becoming
                 Professional UI/UX Designer
             </a>
         </div>
         <div class="flex items-center md:order-2">
             <button type="button"
-                class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 "
                 id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                 data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
                 <img class="w-10 h-10 rounded-full object-cover" src="https://i.mydramalist.com/XNe1X_5c.jpg"
                     alt="user photo">
             </button>
-            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
+            <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow "
                 id="user-dropdown">
                 <div class="px-4 py-3">
-                    <span class="block text-sm text-gray-900 dark:text-white">{{ session('user') }}</span>
-                    <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">{{ session('email') }}</span>
+                    <span class="block text-sm text-gray-900 ">{{ session('user') }}</span>
+                    <span class="block text-sm  text-gray-500 truncate ">{{ session('email') }}</span>
                 </div>
                 <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>

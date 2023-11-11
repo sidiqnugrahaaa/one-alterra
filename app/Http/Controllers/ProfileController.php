@@ -85,7 +85,6 @@ class ProfileController extends Controller
                     ->where('started_at', '<=', $date->endOfDay()->format('Y-m-d H:i:s'))
                     ->get();
                 foreach ($detail as $value) {
-                    $duration += $value->content->duration;
                 }
             }
             $report[$key]['duration'] = $duration;
