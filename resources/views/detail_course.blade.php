@@ -33,7 +33,8 @@
                             <button
                                 class="inline-block w-full p-4 border-b-2 border-transparent rounded-t-lg hover:text-one-primary hover:border-one-primary hover:bg-orange-100"
                                 id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab"
-                                aria-controls="dashboard" aria-selected="false">Silabus</button>
+                                aria-controls="dashboard"
+                                aria-selected="{text-one-primary border-one-primary bg-orange-100}">Silabus</button>
                         </li>
 
                     </ul>
@@ -88,7 +89,7 @@
                                         data-inactive-classes="text-one-secondary">
                                         <h2 id="{{ 'accordion-' . $blueIndex . '-heading-' . $syllabusIndex + 1 }}">
                                             <button type="button"
-                                                class="flex items-center justify-between w-full font-medium text-left text-gray-500 border-b border-gray-200  
+                                                class="flex items-center justify-between w-full font-medium text-left text-gray-500 border-b border-gray-200"
                                                 data-accordion-target="{{ '#accordion-' . $blueIndex . '-body-' . $syllabusIndex + 1 }}"
                                                 aria-expanded="true"
                                                 aria-controls="{{ 'accordion-' . $blueIndex . '-body-' . $syllabusIndex + 1 }}">
