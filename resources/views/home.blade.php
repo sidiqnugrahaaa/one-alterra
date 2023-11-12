@@ -8,6 +8,18 @@
         <div
             class="bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#bbcff0] via-transparent to-transparent -z-20 absolute h-[1400px] w-[1400px] rounded-full -right-96 -top-40 animate-pulse">
         </div>
+        <div class="absolute z-20 w-28 h-28 bg-transparent bg-contain bg-no-repeat top-40 left-[440px]"
+            style="background-image: url({{ asset('assets/home/element1.png') }});">
+        </div>
+        <div class="absolute z-20 w-52 h-28 bg-transparent bg-contain bg-no-repeat top-48 right-[220px]"
+            style="background-image: url({{ asset('assets/home/benefit1.png') }});">
+        </div>
+        <div class="absolute z-20 w-52 h-28 bg-transparent bg-contain bg-no-repeat top-80 right-[172px]"
+            style="background-image: url({{ asset('assets/home/benefit2.png') }});">
+        </div>
+        <div class="absolute z-20 w-52 h-28 bg-transparent bg-contain bg-no-repeat top-[450px] right-[200px]"
+            style="background-image: url({{ asset('assets/home/benefit3.png') }});">
+        </div>
         <div class="container mx-auto flex flex-col items-center">
             <div class="flex justify-center text-5xl py-8">
                 <span class="text-one-primary font-bold me-3"> #KarirITMenanti </span>
@@ -241,15 +253,16 @@
         <div class="flex flex-justify-center px-32">
             <div class="my-3 relative shadow-sm">
                 <!-- Balon pesan -->
-                <div class="bg-white px-6 pt-6 rounded-2xl relative z-10 pb-8">
+                <div class="bg-white px-6 pt-6 rounded-2xl relative z-10 pb-8 h-64">
                     <div class="flex items-center">
-                        <img src="" class="w-12 h-12 object-cover rounded-full" alt="">
+                        <img src="{{ asset('assets/testi/testi1.png') }}" class="w-12 h-12 object-cover rounded-full"
+                            alt="">
                         <div class="ms-4">
                             <h5 class="text-one-secondary font-medium">Albert Flores</h5>
                             <p class="text-gray-500 font-light text-xs">Scrum Master - Figma</p>
                         </div>
                     </div>
-                    <div class="font-light text-one-secondary text-xs mt-6 leading-5">
+                    <div class="font-light text-one-secondary text-sm mt-6 leading-5">
                         "Awalnya sih Penasaran tentang pemrograman Golang yang ada cuma di alta saja, setelah
                         berjalannya waktu, alhamdulillah dapat bimbingan dari mentor, sangat praktis dan mudah
                         dipahami.
@@ -260,7 +273,7 @@
                             d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
                     </svg>
                 </div>
-                <div class="absolute -bottom-2 right-14 z-10 transform translate-x-1/2 w-8 h-8">
+                <div class="absolute bottom-1 right-14 z-10 transform translate-x-1/2 w-8 h-8">
                     <div class="w-full h-full bg-white rotate-45 transform origin-bottom"></div>
                 </div>
             </div>
@@ -268,7 +281,8 @@
                 <!-- Balon pesan -->
                 <div class="bg-white px-6 pt-6 rounded-2xl relative z-10 pb-8">
                     <div class="flex items-center">
-                        <img src="" class="w-16 h-16 object-cover rounded-full" alt="">
+                        <img src="{{ asset('assets/testi/testi2.png') }}" class="w-16 h-16 object-cover rounded-full"
+                            alt="">
                         <div class="ms-4">
                             <h5 class="text-one-secondary font-medium text-lg">Albert Flores</h5>
                             <p class="text-gray-500 font-light text-sm">Software Developer - Tokopedia</p>
@@ -285,7 +299,7 @@
                             d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
                     </svg>
                 </div>
-                <div class="absolute -bottom-2 right-14 z-10 transform translate-x-1/2 w-8 h-8">
+                <div class="absolute bottom-0 right-14 z-10 transform translate-x-1/2 w-8 h-8">
                     <div class="w-full h-full bg-white rotate-45 transform origin-bottom"></div>
                 </div>
             </div>
@@ -293,16 +307,17 @@
                 <!-- Balon pesan -->
                 <div class="bg-white px-6 pt-6 rounded-2xl relative z-10 pb-8">
                     <div class="flex items-center">
-                        <img src="" class="w-12 h-12 object-cover rounded-full" alt="">
+                        <img src="{{ asset('assets/testi/testi3.png') }}" class="w-12 h-12 object-cover rounded-full"
+                            alt="">
                         <div class="ms-4">
-                            <h5 class="text-one-secondary font-medium">Albert Flores</h5>
-                            <p class="text-gray-500 font-light text-xs">Scrum Master - Figma</p>
+                            <h5 class="text-one-secondary font-medium">Kathryn Murphy</h5>
+                            <p class="text-gray-500 font-light text-xs">UI/UX Designer - Hybe Labels</p>
                         </div>
                     </div>
                     <div class="font-light text-one-secondary text-sm mt-6 leading-6">
-                        "Awalnya sih Penasaran tentang pemrograman Golang yang ada cuma di alta saja, setelah
-                        berjalannya waktu, alhamdulillah dapat bimbingan dari mentor, sangat praktis dan mudah
-                        dipahami.
+                        "Alterra Academy memiliki materi yang terstruktur dan
+                        mudah dipahami. Mentor dan staf sangat membantu saat proses belajar, jangan khawatir ketika kita
+                        mengalami kesulitan memahami materi.
                     </div>
                     <svg class="w-8 h-8 text-gray-400 mb-4 opacity-50 absolute right-2 bottom-0" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">

@@ -31,6 +31,7 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'index')->name('profile')->middleware('auth');
+    Route::get('/profile/report-time', 'reportTime')->name('profile.report.time')->middleware('auth');
 });
 
 Route::controller(HomeController::class)->group(function () {

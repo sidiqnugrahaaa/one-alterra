@@ -21,14 +21,17 @@ class CourseController extends Controller
             return redirect()->route('profile');
         }
 
-        if ($enrolled->current_content_id == null) {
+        if ($enrolled->current_content_id == null || $detail == 'introduction') {
             $current = DetailEnrolledCourse::where('enrolled_course_id', $id)->orderBy('id', 'asc')->first();
-            $enrolled->current_content_id = $current->id;
-            $current->started_at = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s');
-            $enrolled->save();
-            $current->save();
-
-            $detail = $current->id;
+            if ($detail == 'introduction') {
+                $detail = $current->id;
+            } else {
+                $enrolled->current_content_id = $current->id;
+                $current->started_at = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s');
+                $enrolled->save();
+                $current->save();
+                $detail = $current->id;
+            }
         }
 
         $currentContent = DetailEnrolledCourse::find($detail);
@@ -65,6 +68,7 @@ class CourseController extends Controller
         if ($detailEnrolled->status == 0) {
             $detailEnrolled->status = 1;
             $detailEnrolled->completed_at = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s');
+            $detailEnrolled->duration = Carbon::parse($detailEnrolled->started_at)->diffInSeconds(Carbon::parse($detailEnrolled->completed_at));
             $detailEnrolled->save();
 
             $enrolled->current_content_id = $next->id;
@@ -130,6 +134,7 @@ class CourseController extends Controller
             }
             $enrolled->status = 1;
             $enrolled->completed_at = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s');
+            $enrolled->duration = Carbon::parse($enrolled->started_at)->diffInSeconds(Carbon::parse($enrolled->completed_at));
             $enrolled->save();
 
             DB::commit();

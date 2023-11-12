@@ -12,7 +12,7 @@
                         id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                         data-dropdown-placement="bottom">
                         <span class="sr-only">Open user menu</span>
-                        <img class="w-10 h-10 rounded-full object-cover" src="https://i.mydramalist.com/XNe1X_5c.jpg"
+                        <img class="w-10 h-10 rounded-full object-cover" src="{{ asset('assets/profile/profile.jpg') }}"
                             alt="user photo">
                     </button>
                 @else

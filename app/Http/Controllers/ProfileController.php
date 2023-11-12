@@ -73,21 +73,17 @@ class ProfileController extends Controller
         $endDate = Carbon::now()->endOfWeek();
         $period = CarbonPeriod::create($startDate, $endDate);
         $dates = $period->toArray();
-
         $userId = auth()->user()->id;
 
-        foreach ($report as $key => $item) {
-            $duration = 0;
-            foreach ($dates as $date) {
-                $detail = DetailEnrolledCourse::where('enrolled_course_id', $userId)
-                    ->where('status', 1)
-                    ->where('started_at', '>=', $date->format('Y-m-d H:i:s'))
-                    ->where('started_at', '<=', $date->endOfDay()->format('Y-m-d H:i:s'))
-                    ->get();
-                foreach ($detail as $value) {
-                }
-            }
-            $report[$key]['duration'] = $duration;
+        $duration = 0;
+        foreach ($dates as $key => $date) {
+            $duration = DetailEnrolledCourse::where('enrolled_course_id', $userId)
+                ->where('status', 1)
+                ->where('started_at', '>=', $date->format('Y-m-d H:i:s'))
+                ->where('started_at', '<=', $date->endOfDay()->format('Y-m-d H:i:s'))
+                ->sum('duration');
+            $report[$key]['duration'] = intval($duration / 60);
         }
+        return response()->json($report, 200);
     }
 }

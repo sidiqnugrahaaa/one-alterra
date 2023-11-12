@@ -15,33 +15,42 @@
                         </div>
                         @if ($test->testQuestion->question_image)
                             <div class="mt-4">
-                                <img src="{{ $test->testQuestion->question_image }}" class="w-40 h-auto" alt="">
+                                <img src="{{ $test->testQuestion->question_image }}" class="w-80 h-auto ml-6 mb-6"
+                                    alt="">
                             </div>
                         @endif
                         <div class="my-2 grid grid-flow-row grid-cols-2 ml-6">
                             <div class="flex items-center mb-4">
-                                <input type="radio" value="a" name="{{ 'question_' . $test->testQuestion->id }}"
+                                <input id="{{ 'question_' . $test->testQuestion->id . '_a' }}" type="radio" value="a"
+                                    name="{{ 'question_' . $test->testQuestion->id }}"
                                     class="w-4 h-4 text-one-primary focus:ring-one-primary border-gray-300 cursor-pointer"
                                     {{ $test->answer_a ? 'checked' : '' }}>
-                                <label for="default-radio-1" class="ms-2">{{ $test->testQuestion->answer_a }}</label>
+                                <label for="{{ 'question_' . $test->testQuestion->id . '_a' }}"
+                                    class="ms-2 hover:cursor-pointer">{{ $test->testQuestion->answer_a }}</label>
                             </div>
                             <div class="flex items-center mb-4">
-                                <input type="radio" value="b" name="{{ 'question_' . $test->testQuestion->id }}"
+                                <input id="{{ 'question_' . $test->testQuestion->id . '_b' }}" type="radio"
+                                    value="b" name="{{ 'question_' . $test->testQuestion->id }}"
                                     class="w-4 h-4 text-one-primary focus:ring-one-primary border-gray-300 cursor-pointer"
                                     {{ $test->answer_b ? 'checked' : '' }}>
-                                <label for="default-radio-1" class="ms-2">{{ $test->testQuestion->answer_b }}</label>
+                                <label for="{{ 'question_' . $test->testQuestion->id . '_b' }}"
+                                    class="ms-2 hover:cursor-pointer">{{ $test->testQuestion->answer_b }}</label>
                             </div>
                             <div class="flex items-center mb-4">
-                                <input type="radio" value="c" name="{{ 'question_' . $test->testQuestion->id }}"
+                                <input id="{{ 'question_' . $test->testQuestion->id . '_c' }}" type="radio"
+                                    value="c" name="{{ 'question_' . $test->testQuestion->id }}"
                                     class="w-4 h-4 text-one-primary focus:ring-one-primary border-gray-300 cursor-pointer"
                                     {{ $test->answer_c ? 'checked' : '' }}>
-                                <label for="default-radio-1" class="ms-2">{{ $test->testQuestion->answer_c }}</label>
+                                <label for="{{ 'question_' . $test->testQuestion->id . '_c' }}"
+                                    class="ms-2 hover:cursor-pointer">{{ $test->testQuestion->answer_c }}</label>
                             </div>
                             <div class="flex items-center mb-4">
-                                <input type="radio" value="d" name="{{ 'question_' . $test->testQuestion->id }}"
+                                <input id="{{ 'question_' . $test->testQuestion->id . '_d' }}" type="radio"
+                                    value="d" name="{{ 'question_' . $test->testQuestion->id }}"
                                     class="w-4 h-4 text-one-primary focus:ring-one-primary border-gray-300 cursor-pointer"
                                     {{ $test->answer_d ? 'checked' : '' }}>
-                                <label for="default-radio-1" class="ms-2">{{ $test->testQuestion->answer_d }}</label>
+                                <label for="{{ 'question_' . $test->testQuestion->id . '_d' }}"
+                                    class="ms-2 hover:cursor-pointer">{{ $test->testQuestion->answer_d }}</label>
                             </div>
                         </div>
                     </div>
@@ -53,7 +62,7 @@
                 </div>
             @else
                 <div class="text-end">
-                    <button onclick="submitTest()" type="button"
+                    <button onclick="submitTest({{ $currentContent->id }})" type="button"
                         class=" text-white bg-one-primary hover:bg-one-primary focus:ring-4 font-medium rounded-lg px-5 py-2.5 my-2">Submit
                     </button>
                 </div>
@@ -71,7 +80,7 @@
         });
 
 
-        function submitTest() {
+        function submitTest(detail) {
             Swal.fire({
                 title: 'Apakah kamu yakin?',
                 text: "Kamu tidak bisa mengubah jawaban setelah submit",
@@ -108,8 +117,12 @@
                                 confirmButtonText: 'Selesai',
                             }).then((result) => {
                                 if (result.isConfirmed) {
-                                    window.location.href =
-                                        "{{ route('course.show', ['id' => $enrolled->id, 'detail' => 'introduction']) }}";
+                                    var url =
+                                        "{{ route('course.show', ['id' => $enrolled->id, 'detail' => ':id']) }}"
+                                        .replace(
+                                            ':id', detail);
+                                    window.location.href = url;
+
                                 }
                             })
                         }

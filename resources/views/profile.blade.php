@@ -4,7 +4,8 @@
     <div class="container mx-auto ">
         <div class="flex justify-between px-8 my-10">
             <div class="flex items-center">
-                <img src="https://i.mydramalist.com/XNe1X_5c.jpg" class="w-32 h-32 rounded-full object-cover" alt="">
+                <img src="{{ asset('assets/profile/profile.jpg') }}" class="w-32 h-32 rounded-full object-cover"
+                    alt="">
                 <div class="ms-6">
                     <h1 class="font-semibold text-3xl text-one-secondary mb-2">{{ $user->name }}</h1>
                     <h4 class="text-xl text-gray-500">{{ $user->email }}</h4>
@@ -107,63 +108,83 @@
 
 @section('script')
     <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
-        var chartData = [{
-                day: 'Day 1',
-                hours: 3
+        var chartData;
+        $.ajax({
+            url: "{{ route('profile.report.time') }}",
+            type: 'GET',
+            success: function(response) {
+                chartData = response;
+                renderChart();
+                console.log(chartData);
+                console.log(chartData.map(item => item.day));
+                console.log(chartData.map(item => item.duration));
             },
-            {
-                day: 'Day 2',
-                hours: 4
-            },
-            {
-                day: 'Day 3',
-                hours: 5
-            },
-            {
-                day: 'Day 4',
-                hours: 6
-            },
-            {
-                day: 'Day 5',
-                hours: 0
-            },
-            {
-                day: 'Day 6',
-                hours: 7
-            },
-            {
-                day: 'Day 7',
-                hours: 8
-            }
-        ];
+            error: function(error) {
+                chartData = [{
+                        day: 'Senin',
+                        hours: 0
+                    },
+                    {
+                        day: 'Selasa',
+                        hours: 0
+                    },
+                    {
+                        day: 'Rabu',
+                        hours: 0
+                    },
+                    {
+                        day: 'Kamis',
+                        hours: 0
+                    },
+                    {
+                        day: 'Jumat',
+                        hours: 0
+                    },
+                    {
+                        day: 'Sabtu',
+                        hours: 0
+                    },
+                    {
+                        day: 'Minggu',
+                        hours: 0
+                    },
+                ];
 
-        Highcharts.chart('container', {
-            chart: {
-                type: 'areaspline'
-            },
-            title: null,
-            xAxis: {
-                categories: chartData.map(item => item.day),
-            },
-            yAxis: {
-                title: {
-                    text: 'Jam',
-                    position: 'middle'
-                }
-            },
-            credits: {
-                enabled: false
-            },
-            series: [{
-                name: 'Study Time',
-                data: chartData.map(item => item.hours),
-                color: 'rgba(124, 181, 236, 0.7)', // Set your preferred color
-                marker: {
-                    enabled: true,
-                    symbol: 'circle'
-                }
-            }]
+                renderChart();
+            }
         });
+
+        function renderChart() {
+            Highcharts.chart('container', {
+                chart: {
+                    type: 'areaspline'
+                },
+                title: null,
+                xAxis: {
+                    categories: chartData.map(item => item.day),
+                },
+                yAxis: {
+                    title: {
+                        text: 'Menit',
+                        position: 'middle'
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    name: 'Waktu Belajar',
+                    data: chartData.map(item => item.duration),
+                    color: 'rgba(124, 181, 236, 0.7)', // Set your preferred color
+                    marker: {
+                        enabled: true,
+                        symbol: 'circle'
+                    }
+                }]
+            });
+        }
     </script>
 @endsection
