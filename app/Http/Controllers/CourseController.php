@@ -137,6 +137,10 @@ class CourseController extends Controller
             $enrolled->duration = Carbon::parse($enrolled->started_at)->diffInSeconds(Carbon::parse($enrolled->completed_at));
             $enrolled->save();
 
+            $enrolledCourse = EnrolledCourse::find($enrolled->enrolled_course_id);
+            $enrolledCourse->current_content_id = $enrolled->id;
+            $enrolledCourse->save();
+
             DB::commit();
             return response()->json([
                 'status' => 'success',
