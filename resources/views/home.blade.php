@@ -273,13 +273,13 @@
                             d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
                     </svg>
                 </div>
-                <div class="absolute bottom-1 right-14 z-10 transform translate-x-1/2 w-8 h-8">
+                <div class="absolute -bottom-2 right-14 z-10 transform translate-x-1/2 w-8 h-8">
                     <div class="w-full h-full bg-white rotate-45 transform origin-bottom"></div>
                 </div>
             </div>
             <div class="my-3 relative shadow-sm mx-20">
                 <!-- Balon pesan -->
-                <div class="bg-white px-6 pt-6 rounded-2xl relative z-10 pb-8">
+                <div class="bg-white px-6 pt-6 rounded-2xl relative z-10 pb-8  h-64">
                     <div class="flex items-center">
                         <img src="{{ asset('assets/testi/testi2.png') }}" class="w-16 h-16 object-cover rounded-full"
                             alt="">
@@ -299,13 +299,13 @@
                             d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z" />
                     </svg>
                 </div>
-                <div class="absolute bottom-0 right-14 z-10 transform translate-x-1/2 w-8 h-8">
+                <div class="absolute -bottom-2 right-14 z-10 transform translate-x-1/2 w-8 h-8">
                     <div class="w-full h-full bg-white rotate-45 transform origin-bottom"></div>
                 </div>
             </div>
             <div class="my-3 relative shadow-sm">
                 <!-- Balon pesan -->
-                <div class="bg-white px-6 pt-6 rounded-2xl relative z-10 pb-8">
+                <div class="bg-white px-6 pt-6 rounded-2xl relative z-10 pb-8  h-64">
                     <div class="flex items-center">
                         <img src="{{ asset('assets/testi/testi3.png') }}" class="w-12 h-12 object-cover rounded-full"
                             alt="">

@@ -21,17 +21,17 @@ class CourseController extends Controller
             return redirect()->route('profile');
         }
 
-        if ($enrolled->current_content_id == null || $detail == 'introduction') {
-            $current = DetailEnrolledCourse::where('enrolled_course_id', $id)->orderBy('id', 'asc')->first();
-            if ($detail == 'introduction') {
-                $detail = $current->id;
-            } else {
-                $enrolled->current_content_id = $current->id;
-                $current->started_at = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s');
-                $enrolled->save();
-                $current->save();
-                $detail = $current->id;
-            }
+        $current = DetailEnrolledCourse::where('enrolled_course_id', $id)->orderBy('id', 'asc')->first();
+        if ($enrolled->current_content_id == null) {
+            $enrolled->current_content_id = $current->id;
+            $current->started_at = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s');
+            $enrolled->save();
+            $current->save();
+            $detail = $current->id;
+        }
+
+        if ($detail == 'introduction') {
+            $detail = $current->id;
         }
 
         $currentContent = DetailEnrolledCourse::find($detail);
@@ -54,7 +54,7 @@ class CourseController extends Controller
                 return view('course.task', compact('detailCourse', 'enrolled', 'currentContent'));
                 break;
             case 6:
-                return view('course.task', compact('detailCourse', 'enrolled', 'currentContent'));
+                return view('course.resume', compact('detailCourse', 'enrolled', 'currentContent'));
                 break;
         }
     }
