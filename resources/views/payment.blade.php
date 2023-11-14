@@ -1,5 +1,14 @@
 @extends('layouts.main')
 
+@section('css')
+    <style>
+        .swal-wide {
+            width: 420px !important;
+            padding-top: 0px !important;
+        }
+    </style>
+@endsection
+
 @section('content')
     <div class="container mx-auto text-one-secondary">
         <div class="text-3xl font-normal px-8 py-16">
@@ -34,7 +43,7 @@
             </ol>
 
         </div>
-        <form class="py-8 text-one-secondary" method="POST" action="">
+        <form class="py-8 text-one-secondary" id="form-payment">
             @csrf
             <div class="grid grid-cols-2 px-8 my-16">
 
@@ -131,7 +140,7 @@
                             <div>Total</div>
                             <div>Rp. 36.000.000.,-</div>
                         </div>
-                        <button type="submit"
+                        <button type="button" onclick="submitForm()"
                             class="w-full text-white bg-one-primary hover:bg-one-primary focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 my-2">Checkout
                         </button>
                         {{-- data-modal-target="popup-modal" data-modal-toggle="popup-modal"  --}}
@@ -168,4 +177,59 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+        const imageUrl = "{{ asset('assets/modal/check.png') }}";
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': csrfToken
+            }
+        });
+
+        function submitForm() {
+            var formData = $('#form-payment').serialize();
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('payment.course.post') }}",
+                data: formData,
+                success: function(response) {
+                    Swal.fire({
+                        html: `<div class="text-center relative">
+                                    <div class="flex justify-center">
+                                        <img src="` + imageUrl + `" class="w-48 h-auto" alt="">
+                                    </div>
+                                    <div class="px-2">
+                                        <h3 class="mb-2 text-xl font-semibold text-one-secondary">Pendaftaran Berhasil</h3>
+                                        <p class="font-light text-sm px-16">Silakan periksa email untuk detail pembelian. Selamat
+                                            Belajar!
+                                        </p>
+                                    </div>
+                                </div>`,
+                        showConfirmButton: true,
+                        customClass: 'swal-wide',
+                        confirmButtonText: 'Ok',
+                        confirmButtonColor: '#F37524',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "{{ route('profile') }}";
+                        }
+                    });
+                },
+                error: function(error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Terdapat Kesalahan!',
+                    })
+                }
+            });
+        }
+    </script>
 @endsection

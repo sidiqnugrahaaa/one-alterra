@@ -146,6 +146,39 @@
         @include('../components/course-footer')
     </div>
     @yield('modal')
+    <div id="keyword-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow ">
+                <!-- Modal header -->
+                <div class="flex items-center w-full p-4 md:p-5 rounded-t text-one-secondary">
+                    <h3 class="grow text-center text-xl font-semibold">
+                        Keyword
+                    </h3>
+                </div>
+                <div class="text-center font-light text-sm px-10">
+                    Masukkan keyword yang ditampilkan di video, untuk melanjutkan materi.
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5">
+                    <form class="space-y-4" action="#">
+                        <div>
+                            <input type="text" name="keyword-next-course" id="keyword-next-course"
+                                class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-one-primary focus:border-one-primary block w-full p-2.5"
+                                placeholder="Keyword" required>
+                        </div>
+                        <div class="text-end">
+                            <button data-modal-hide="keyword-modal" type="button"
+                                class=" text-one-primary bg-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Cancel</button>
+                            <button type="button" id="submit-keyword-next-course"
+                                class=" text-white bg-one-primary rounded-lg text-sm px-5 py-2.5 text-center">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -156,6 +189,49 @@
             headers: {
                 'X-CSRF-TOKEN': csrfToken
             }
+        });
+
+        $(document).ready(function() {
+            $('#submit-keyword-next-course').click(function() {
+                let keyword = $('#keyword-next-course').val();
+                let id = {{ $currentContent->id }};
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('course.keyword.submit') }}',
+                    data: {
+                        _token: csrfToken,
+                        keyword: keyword,
+                        id: id
+                    },
+                    success: function(data) {
+                        if (data.status == 'success') {
+                            Swal.fire({
+                                title: 'Berhasil!',
+                                text: 'Keyword yang anda masukkan benar!',
+                                icon: 'success',
+                                confirmButtonColor: '#F37524',
+                                confirmButtonText: 'Ok',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    var url =
+                                        "{{ route('course.show', ['id' => $enrolled->id, 'detail' => ':id']) }}"
+                                        .replace(
+                                            ':id', id);
+                                    window.location.href = url;
+
+                                }
+                            })
+                        } else {
+                            Swal.fire({
+                                text: 'Keyword yang anda masukkan kurang tepat!',
+                                confirmButtonColor: '#F37524',
+                                confirmButtonText: 'Ok',
+                                width: '400px'
+                            })
+                        }
+                    }
+                });
+            });
         });
     </script>
 </body>

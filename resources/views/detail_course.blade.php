@@ -12,13 +12,11 @@
     <div class="container mx-auto">
         <div class="grid grid-cols-3 gap-16 p-8">
             <div class="col-span-2 flex flex-col items-center">
-                {{-- <iframe width="780" height="400" class="shadow-xl rounded-xl mb-16"
-                    src="https://www.youtube.com/embed/_btxV8tJM7w?si=K5SFEeTuMRkinQr9&amp;controls=0"
-                    title="YouTube video player" frameborder="0"
+                <iframe width="780" height="400" class="shadow-xl rounded-xl mb-16"
+                    src="https://www.youtube.com/embed/Ee8fzFxWC7A?si=1Fota3bpnVBCU_76" title="YouTube video player"
+                    frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen></iframe> --}}
-
-
+                    allowfullscreen></iframe>
                 <div class="mb-4 border-b border-gray-200 w-full">
                     <ul class="flex w-full text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent"
                         role="tablist">

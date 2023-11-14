@@ -105,8 +105,8 @@ class ContentSeeder extends Seeder
         $contentVideo = [
             'content_id' => 2,
             'title' => 'Introduction UI UX Designer',
-            'description' => 'This is description of video',
-            'embed_code' => '<iframe class="w-full aspect-video rounded-xl" src="https://www.youtube.com/embed/iKQEtj-ln3c?si=PC4x4qIsWl9lvALe"
+            'description' => 'Selamat datang dalam video ini yang akan membawa Anda ke dalam dunia menarik User Interface (UI) dan User Experience (UX). Saya Zahra, akan memandu Anda melalui konsep-konsep dasar, prinsip desain, dan pentingnya antarmuka pengguna yang baik. Mari kita mulai petualangan kita dalam memahami bagaimana desain dapat meningkatkan pengalaman pengguna secara keseluruhan.',
+            'embed_code' => '<iframe class="w-full aspect-video rounded-xl" src="https://www.youtube.com/embed/_VNwJx2cKEg?si=FMBQeSFP3UWffA2L"
                 title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen></iframe>
@@ -317,6 +317,19 @@ class ContentSeeder extends Seeder
         ];
 
         Content::insert($content);
+
+        $contentVideo = [
+            'content_id' => 7,
+            'title' => 'Video - Design Process Framework',
+            'description' => 'Selamat datang dalam video ini yang akan membawa Anda ke dalam dunia menarik User Interface (UI) dan User Experience (UX). Saya Zahra, akan memandu Anda melalui konsep-konsep dasar, prinsip desain, dan pentingnya antarmuka pengguna yang baik. Mari kita mulai petualangan kita dalam memahami bagaimana desain dapat meningkatkan pengalaman pengguna secara keseluruhan.',
+            'embed_code' => '<iframe class="w-full aspect-video rounded-xl" src="https://www.youtube.com/embed/_VNwJx2cKEg?si=FMBQeSFP3UWffA2L"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            ',
+        ];
+
+        ContentVideo::insert($contentVideo);
 
         // User Persona
         $content = [

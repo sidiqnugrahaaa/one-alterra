@@ -45,5 +45,7 @@ Route::controller(CourseController::class)->group(function () {
     Route::get('/course/{id}/next', 'next')->name('course.next')->middleware('auth');
     Route::get('/course/{id}/prev', 'prev')->name('course.prev')->middleware('auth');
     Route::post('/course/test/submit', 'submitTest')->name('course.test.submit')->middleware('auth');
+    Route::post('/course/task/submit', 'submitTask')->name('course.task.submit')->middleware('auth');
+    Route::post('/course/keyword/submit', 'submitKeyword')->name('course.keyword.submit')->middleware('auth');
     Route::get('/course/{id}/{detail}', 'index')->name('course.show')->middleware('auth');
 });

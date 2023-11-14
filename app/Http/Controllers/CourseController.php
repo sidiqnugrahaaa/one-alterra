@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blueprint;
 use App\Models\DetailEnrolledCourse;
 use App\Models\EnrolledCourse;
+use App\Models\TaskTaken;
 use App\Models\TestQuestion;
 use App\Models\TestTaken;
 use Carbon\Carbon;
@@ -81,6 +82,11 @@ class CourseController extends Controller
             $allDetail = DetailEnrolledCourse::where('enrolled_course_id', $enrolled->id)->count();
             $enrolled->progress = round(($detailCompleted / $allDetail) * 100);
             $enrolled->save();
+        } else {
+            if ($next->started_at == null) {
+                $next->started_at = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s');
+                $next->save();
+            }
         }
 
         if ($next->content->type == 4 && $next->status == 0) {
@@ -136,15 +142,80 @@ class CourseController extends Controller
             $enrolled->completed_at = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s');
             $enrolled->duration = Carbon::parse($enrolled->started_at)->diffInSeconds(Carbon::parse($enrolled->completed_at));
             $enrolled->save();
-
             $enrolledCourse = EnrolledCourse::find($enrolled->enrolled_course_id);
-            $enrolledCourse->current_content_id = $enrolled->id;
+
+            $next = DetailEnrolledCourse::where('enrolled_course_id', $enrolledCourse->id)->where('content_id', '>', $enrolled->content_id)->orderBy('content_id', 'asc')->first();
+            $enrolledCourse->current_content_id = $next->id;
             $enrolledCourse->save();
 
             DB::commit();
             return response()->json([
                 'status' => 'success',
                 'message' => 'Test submitted successfully'
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ]);
+        }
+    }
+
+    public function submitKeyword(Request $request)
+    {
+        $enrolled = DetailEnrolledCourse::find($request->id);
+        if ($enrolled->content->keyword == $request->keyword) {
+            $enrolled->is_passed = 1;
+            $enrolled->save();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Selamat, anda bisa melanjutkan ke materi selanjutnya'
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Keyword masih kurang tepat'
+            ]);
+        }
+    }
+
+    public function submitTask(Request $request)
+    {
+        $request->validate([
+            'id_task' => 'required',
+            'file_task' => 'required|mimes:pdf,doc,docx|max:2048',
+            'jawaban' => 'required'
+        ]);
+
+        DB::beginTransaction();
+        try {
+            $file = $request->file('file_task');
+            $fileName = time() . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('uploads', $fileName);
+
+            $task = new TaskTaken();
+            $task->detail_enrolled_course_id = $request->id_task;
+            $task->file = $fileName;
+            $task->answer = $request->jawaban;
+            $task->save();
+
+            $enrolled = DetailEnrolledCourse::find($request->id_task);
+            $enrolled->status = 1;
+            $enrolled->completed_at = Carbon::now()->timezone('Asia/Jakarta')->format('Y-m-d H:i:s');
+            $enrolled->duration = Carbon::parse($enrolled->started_at)->diffInSeconds(Carbon::parse($enrolled->completed_at));
+            $enrolled->save();
+
+            $enrolledCourse = EnrolledCourse::find($enrolled->enrolled_course_id);
+            $next = DetailEnrolledCourse::where('enrolled_course_id', $enrolledCourse->id)->where('content_id', '>', $enrolled->content_id)->orderBy('content_id', 'asc')->first();
+            $enrolledCourse->current_content_id = $next->id;
+            $enrolledCourse->save();
+
+            DB::commit();
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Task berhasil dikumpulkan!'
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
