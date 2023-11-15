@@ -8,13 +8,15 @@
                 {!! $currentContent->content->contentTask->description !!}
                 <hr>
                 <div>
-                    <h5 class="text-lg font-bold my-2">Jawaban</h5>
+                    <h5 class="text-lg font-bold my-2 inline-flex items-center">Jawaban <span id="jawaban-error"
+                            class="text-sm font-medium text-red-300 ml-2"></span></h5>
                     <textarea id="jawaban" name="jawaban" rows="4"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
                         placeholder="Jawaban" {{ $currentContent->status == 1 ? 'readonly' : '' }}>{{ $currentContent->status == 1 ? $currentContent->taskTaken->answer : '' }}</textarea>
                 </div>
                 <div>
-                    <h5 class="text-lg font-bold my-2">Upload File</h5>
+                    <h5 class="text-lg font-bold my-2 inline-flex items-center">Upload File <span id="upload-error"
+                            class="text-sm font-medium text-red-300 ml-2"></span></h5>
                     <div class="flex items-center justify-center w-full">
                         <label for="{{ $currentContent->status == 0 ? 'dropzone-file' : '' }}"
                             class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 ">
@@ -63,6 +65,8 @@
 @section('script')
     <script>
         function submitTask() {
+            $('#jawaban-error').text('');
+            $('#upload-error').text('');
             let formData = new FormData();
             formData.append('_token', '{{ csrf_token() }}');
             formData.append('id_task', '{{ $currentContent->id }}');
@@ -93,18 +97,26 @@
                             icon: 'error',
                             title: 'Gagal',
                             text: data.message,
-                            showConfirmButton: false,
-                            timer: 1500
+                            showConfirmButton: true,
+                            confirmButtonColor: '#F37524',
                         })
                     }
                 },
-                error: function(data) {
+                error: function(response) {
+                    data = response.responseJSON;
+                    if (data.errors && data.errors.jawaban) {
+                        $('#jawaban-error').text(data.errors.jawaban[0]);
+                    }
+
+                    if (data.errors && data.errors.file_task) {
+                        $('#upload-error').text(data.errors.file_task[0]);
+                    }
                     Swal.fire({
                         icon: 'error',
                         title: 'Gagal',
                         text: data.message,
-                        showConfirmButton: false,
-                        timer: 1500
+                        showConfirmButton: true,
+                        confirmButtonColor: '#F37524',
                     })
                 }
             });
@@ -122,3 +134,4 @@
             }
         }
     </script>
+@endsection

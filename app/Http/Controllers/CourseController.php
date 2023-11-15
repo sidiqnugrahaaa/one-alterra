@@ -187,6 +187,12 @@ class CourseController extends Controller
             'id_task' => 'required',
             'file_task' => 'required|mimes:pdf,doc,docx|max:2048',
             'jawaban' => 'required'
+        ], [
+            'id_task.required' => 'The task ID field is required.',
+            'file_task.required' => 'File Jawaban tidak boleh dikosongkan.',
+            'file_task.mimes' => 'Tipe File Jawaban harus berekstensi PDF, DOC, or DOCX.',
+            'file_task.max' => 'File Jawaban tidak boleh dari 2Mb',
+            'jawaban.required' => 'Jawaban tidak boleh dikosongkan.',
         ]);
 
         DB::beginTransaction();
